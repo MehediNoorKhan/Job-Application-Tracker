@@ -57,6 +57,13 @@ const handleSubmit = async (e: React.FormEvent) => {
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
+            {
+              error && (
+                <div className="rounded-md bg-destructive/15 text-destructive text-sm mb-4 p-3">
+                  {error}
+                </div>
+              )
+            }
             <div className="space-y-2 mb-4">
               <Label htmlFor="name">Name</Label>
               <Input onChange={(e)=>setName(e.target.value)} value={name} id="name" type="text" placeholder="John Doe" required />
@@ -71,7 +78,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-2 mt-4">
-            <Button type="submit" className="cursor-pointer self-start" disabled={loading}>Sign Up</Button>
+            <Button type="submit" className="cursor-pointer self-start" disabled={loading}>{loading ? "Signing up..." : "Sign Up"}</Button>
             <p>Already have an account? <Link href="/sign-in">Sign In</Link></p>
           </CardFooter>
         </form>
