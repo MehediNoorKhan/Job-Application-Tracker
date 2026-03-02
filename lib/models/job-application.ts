@@ -11,7 +11,6 @@ export interface IJobApplication extends Document {
   order: number;
   notes?: string;
   salary?: string;
-  link?: string;
   jobUrl?: string;
   appliedDate?: Date;
   tags?: string[];
@@ -23,11 +22,21 @@ export interface IJobApplication extends Document {
 
 const jobApplicationSchema = new Schema<IJobApplication>({
   company: { type: String, required: true },
-  boardId: { type: String, ref: "Board", required: true, index: true },
+  position: { type: String, required: true },
+  location: { type: String },
+  status: { type: String, required: true },
+  columnId: { type: mongoose.Types.ObjectId, ref: "Column", required: true, index: true },
+  boardId: { type: mongoose.Types.ObjectId, ref: "Board", required: true, index: true },
+  userId: { type: String, required: true, index: true },
   order: { type: Number, required: true, default: 0 },
-  jobApplications: [{ type: Schema.Types.ObjectId, ref: "JobApplication", required: true }],
-  
-}, {
+  notes: { type: String },
+  salary: { type: String },
+  jobUrl: { type: String },
+  appliedDate: { type: Date },
+  tags: { type: [String] },
+  description: { type: String },
+
+}, {    
   timestamps: true
 });
 

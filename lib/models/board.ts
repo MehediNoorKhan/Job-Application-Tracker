@@ -16,4 +16,4 @@ const boardSchema = new Schema<IBoard>({
   timestamps: true
 });
 
-export const Board = mongoose.models.Board || mongoose.model<IBoard>("Board", boardSchema);
+export default mongoose.models.Board || mongoose.model<IBoard>("Board", boardSchema);
